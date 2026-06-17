@@ -123,6 +123,12 @@ if vim.g.neovide then
     end, { desc = "从系统剪切板粘贴" }) 
 
 
+    -- 1. Cmd + T 创建新标签页（在所有模式下均可直接触发）
+    vim.keymap.set({'n', 'v', 'i'}, '<D-t>', function()
+        vim.cmd('stopinsert') -- 如果在插入模式，先安全退出
+        vim.cmd('tabnew')     -- 创建空白新标签页
+    end, { desc = "新建标签页" })
+
       -- ==================== 安全关闭标签/分屏 (Cmd + W) ====================
     vim.keymap.set({'n', 'v', 'i'}, '<D-w>', function()
         vim.cmd('stopinsert') -- 如果在插入模式，先安全退出
